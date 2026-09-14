@@ -1,0 +1,21 @@
+{
+  "name": "Evolia — Formation IA & Automatisation",
+  "short_name": "Evolia",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#005D39",
+  "theme_color": "#005D39",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

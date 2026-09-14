@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://evolia-petite-jenny.netlify.app/sitemap.xml
