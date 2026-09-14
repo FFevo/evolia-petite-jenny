@@ -3,11 +3,10 @@ import path from 'node:path'
 import { defineConfig, type Connect, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 
-const LEGAL_SLUGS = ['mentions-legales', 'confidentialite', 'cgu'] as const
-
 function legalPagesMiddleware(publicDir: string): Connect.NextHandleFunction {
   return (req, res, next) => {
-    const pathname = (req.url ?? '/').split('?')[0]
+    const url = typeof req.url === 'string' ? req.url : '/'
+    const pathname = url.split('?')[0]
     const match = pathname.match(/^\/(mentions-legales|confidentialite|cgu)\/?$/)
     if (!match) {
       return next()
