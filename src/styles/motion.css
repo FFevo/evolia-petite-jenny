@@ -1,0 +1,25 @@
+/* Motion — micro-interactions. Courbe unique --ease, pas de bounce.
+   Le mouvement guide l'attention ; il ne décore jamais. */
+
+/* CTA hover : léger soulèvement 150 ms — feedback tactile immédiat */
+.cta {
+  transition: transform 150ms var(--ease), background-color 150ms var(--ease);
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+}
+
+/* Reduced motion : tout instantané — l'animation ne doit jamais être une barrière */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}

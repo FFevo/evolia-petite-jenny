@@ -1,0 +1,599 @@
+/* ==========================================================================
+   rest.css — Solution · Preuve · FAQ · Footer CTA
+   Monde visuel : dossier de preuves — papier blanc, encre #111814, vert forêt.
+   Principes : rigueur (hairlines 1px, radius 0, aucune ombre portée),
+   accent vert = ponctuation (10 % max), puces --accent-light jamais en texte,
+   cibles tactiles ≥ 44 px, focus visible 2px --accent offset 2px.
+   Les tokens (--paper, --ink, --accent…) vivent dans tokens.css : non redéfinis.
+   ========================================================================== */
+
+/* ---------- Cadre commun — rythme vertical charte 32 / 48 / 64 ---------- */
+
+.solution-section,
+.proof-section,
+.faq-section,
+.footer-cta-section {
+  padding-block: 32px; /* 375 — échelle charte */
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Public Sans', system-ui, -apple-system, sans-serif;
+}
+
+.solution-inner,
+.proof-inner,
+.faq-inner,
+.footer-cta-inner {
+  max-width: 1120px; /* contenu max charte */
+  margin-inline: auto;
+  padding-inline: 16px; /* marges 375 */
+}
+
+@media (min-width: 768px) {
+  .solution-section,
+  .proof-section,
+  .faq-section,
+  .footer-cta-section {
+    padding-block: 48px;
+  }
+
+  .solution-inner,
+  .proof-inner,
+  .faq-inner,
+  .footer-cta-inner {
+    padding-inline: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .solution-section,
+  .proof-section,
+  .faq-section,
+  .footer-cta-section {
+    padding-block: 64px;
+  }
+
+  .solution-inner,
+  .proof-inner,
+  .faq-inner,
+  .footer-cta-inner {
+    padding-inline: 32px;
+  }
+}
+
+/* Focus visible charte — tout interactif, jamais supprimé */
+.solution-section :focus-visible,
+.proof-section :focus-visible,
+.faq-section :focus-visible,
+.footer-cta-section :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- H2 communs — Public Sans 700 / 28 px, ligne ≤ 70 car. ---------- */
+
+.solution-title,
+.proof-title,
+.faq-title,
+.footer-cta-title {
+  margin: 0 0 32px;
+  max-width: 70ch;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   Solution — timeline + 7 modules + deal transparence
+   ========================================================================== */
+
+.solution-title-line {
+  display: block;
+}
+
+/* Mot clé « preuves utiles » (<strong> dans la copy) — titres en --accent :
+   8:1 AAA sur blanc ; la couleur porte l'emphase, la graisse reste celle du H2 */
+.solution-title-accent {
+  color: var(--accent);
+  font-weight: inherit;
+}
+
+/* Timeline S1–S6 — hairline verticale : le fil du dossier */
+.solution-timeline {
+  position: relative;
+  margin: 0 0 32px;
+  padding: 0;
+  list-style: none;
+  max-width: 70ch;
+}
+
+.solution-timeline::before {
+  content: '';
+  position: absolute;
+  left: 5px; /* axe des puces 11 px */
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--line);
+}
+
+.solution-timeline-item {
+  position: relative;
+  padding: 8px 0 8px 32px;
+}
+
+/* Puce carrée --accent-light — aplat/signe autorisé, jamais du texte */
+.solution-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 11px;
+  height: 11px;
+  background: var(--accent-light);
+}
+
+/* Ref S1–S6 en Fira Mono (codes uniquement), libellé en Public Sans 700.
+   Pas de marge CSS : le tiret cadratin réel du copy porte la séparation,
+   y compris pour les lecteurs d'écran. */
+.solution-timeline-step {
+  font-family: 'Fira Mono', ui-monospace, monospace;
+  font-size: 14px;
+  color: var(--accent);
+}
+
+.solution-timeline-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* Note caps internes ≠ examen RS6776 — secondaire --ink-soft (5,93:1 AA) */
+.solution-note {
+  margin: 0 0 48px;
+  max-width: 70ch;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+/* 7 modules — grille de hairlines : 1 col à 375, 2 cols dès 768 */
+.solution-modules {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0 0 48px;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .solution-modules {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 32px;
+  }
+}
+
+.solution-module {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+
+.solution-module-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* Puce carrée --accent-light — signe, pas texte */
+.solution-module-name::before {
+  content: '';
+  flex: none;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-light);
+}
+
+.solution-module-benefit {
+  padding-left: 16px; /* aligné sur le nom, après la puce */
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* Deal — voile --paper-accent (vert 7 %, pas un fond vert) + filet 3px --accent */
+.solution-deal {
+  margin: 0 0 48px;
+  padding: 24px;
+  max-width: 70ch;
+  background: var(--paper-accent);
+  border-left: 3px solid var(--accent);
+}
+
+.solution-deal-text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Figures placeholder — ratio 3/2, bordure hairline, radius 0 */
+.solution-figures {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .solution-figures {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}
+
+.solution-figure {
+  margin: 0;
+}
+
+.solution-figure-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 3 / 2;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  font-family: 'Fira Mono', ui-monospace, monospace;
+  font-size: 14px;
+  color: var(--ink-faint); /* méta ≥ 14 px — ≈ 4,7:1 AA */
+}
+
+/* ==========================================================================
+   Preuve — slots honnêtes, aucun faux témoignage
+   ========================================================================== */
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 768px) {
+  .proof-grid {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 32px;
+  }
+}
+
+.proof-slot {
+  margin: 0;
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+}
+
+/* Citation en lede — Public Sans 300 / 20 px */
+.proof-quote {
+  margin: 0 0 12px;
+  max-width: 60ch;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+/* KPI — chiffres en Public Sans 800, --accent (8:1 AAA) */
+.proof-kpi {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+/* Phrase d'honnêteté — aucun taux avant le pilote */
+.proof-note {
+  margin: 0;
+  max-width: 70ch;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+/* ==========================================================================
+   FAQ — accordéon 200 ms height mesurée, a11y bouton + aria-expanded
+   ========================================================================== */
+
+.faq-list {
+  max-width: 70ch;
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-item {
+  border-top: 1px solid var(--line); /* séparateurs hairline */
+}
+
+.faq-q {
+  margin: 0;
+}
+
+.faq-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-height: 44px; /* cible tactile */
+  padding: 16px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.faq-button-icon {
+  flex: none;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--accent);
+}
+
+/* Panneau — height animée 200 ms ease-out long ; visibility différée à la
+   fermeture pour rester dans l'arbre d'accessibilité pendant l'animation */
+.faq-panel {
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  transition:
+    height 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 200ms;
+}
+
+.faq-panel.is-open {
+  visibility: visible;
+  transition: height 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faq-a {
+  margin: 0;
+  padding: 0 0 24px;
+  max-width: 65ch;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+/* ==========================================================================
+   Footer CTA — candidature + conformité L.6352-13
+   ========================================================================== */
+
+/* Le sticky CTA bas (~73 px + encoche iOS, présent à tous les breakpoints)
+   ne doit jamais masquer les mentions RS6776 / SIRET : on réserve sa hauteur
+   sous le contenu + une respiration charte de 32 px. */
+.footer-cta-section {
+  padding-bottom: calc(73px + 32px + env(safe-area-inset-bottom, 0px));
+}
+
+.footer-cta-title {
+  margin-bottom: 16px;
+}
+
+/* Hint en lede — Public Sans 300 / 20 px */
+.footer-cta-hint {
+  margin: 0 0 32px;
+  max-width: 65ch;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+/* Tunnel — information → candidature → admission → CPF → inscription */
+.footer-cta-tunnel {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 48px;
+  padding: 0;
+  list-style: none;
+}
+
+/* Étapes en Public Sans — Fira Mono reste réservé aux codes (P02, RS6776) */
+.footer-cta-tunnel-step {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: var(--ink-faint);
+}
+
+/* Séparateur rendu dans le DOM (lisible) — le CSS ne porte que l'espacement */
+.footer-cta-tunnel-sep {
+  margin: 0 8px;
+  color: var(--ink-faint);
+}
+
+/* Étape courante : couleur + soulignement — jamais la couleur seule */
+.footer-cta-tunnel-step[aria-current='step'] {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Incompatibilités — visibles avant candidature, tirets neutres --ink-faint */
+.footer-cta-incompat {
+  margin-bottom: 48px;
+  max-width: 70ch;
+}
+
+.footer-cta-subtitle {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 300; /* H3 charte */
+  color: var(--ink);
+}
+
+.footer-cta-incompat-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-cta-incompat-list li {
+  position: relative;
+  padding: 8px 0 8px 24px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.footer-cta-incompat-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--ink-faint);
+}
+
+/* Formulaire — labels associés, cibles ≥ 44 px, radius 0 */
+.footer-cta-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 48px;
+  max-width: 70ch;
+}
+
+.footer-cta-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-cta-field label {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.footer-cta-required {
+  color: var(--accent);
+}
+
+.footer-cta-field input:not([type='checkbox']),
+.footer-cta-field textarea {
+  min-height: 44px; /* cible tactile */
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 16px; /* ≥ 16 px : pas de zoom iOS au focus */
+}
+
+.footer-cta-field textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+/* Checkbox — cible tactile ≥ 44 px garantie sur 375 : 24 + 2×10 = 44,
+   et toute la rangée est cliquable via le label associé (flex: 1) */
+.footer-cta-field-checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  padding-block: 10px;
+}
+
+.footer-cta-field-checkbox input {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.footer-cta-field-checkbox label {
+  flex: 1;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Primary — fond --accent, texte --paper-light, hover --accent-ink + -2px */
+.footer-cta-submit {
+  align-self: flex-start;
+  min-height: 44px;
+  padding: 12px 32px;
+  border: 0;
+  border-radius: 0;
+  background: var(--accent);
+  color: var(--paper-light, #ffffff);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 150ms,
+    transform 150ms;
+}
+
+.footer-cta-submit:hover {
+  background: var(--accent-ink);
+  transform: translateY(-2px);
+}
+
+/* Accusé local — même langage que le deal : voile + filet */
+.footer-cta-ack {
+  margin: 0;
+  padding: 16px;
+  background: var(--paper-accent);
+  border-left: 3px solid var(--accent);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Mentions légales — méta 14 px --ink-faint (≥ 14 px seulement) */
+.footer-cta-legal {
+  max-width: 70ch;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.footer-cta-legal p {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-faint);
+}
+
+.footer-cta-ref {
+  font-family: 'Fira Mono', ui-monospace, monospace;
+}
+
+.footer-cta-legal a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer-cta-legal a:hover {
+  color: var(--accent-ink);
+}
+
+/* ---------- Reduced motion — tout instantané, pas de translation ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-panel,
+  .footer-cta-submit {
+    transition: none;
+  }
+
+  .footer-cta-submit:hover {
+    transform: none;
+  }
+}

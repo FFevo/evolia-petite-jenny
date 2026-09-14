@@ -1,0 +1,48 @@
+/* Design tokens — copie exacte de brief/spec-visuelle.md §2
+   Charte officielle lockée. Interdits : #f4f1e9, #10b981, #087658. */
+:root {
+  /* Surfaces — matière : papier blanc de bureau */
+  --paper:        #FFFFFF;  /* charte — fond de toutes les pages */
+  --paper-light:  #FFFFFF;  /* = paper : texte inversé sur --ink, base glass */
+  --paper-accent: #EFF7F3;  /* vert clair à 7 % sur blanc — voile, PAS fond vert */
+
+  /* Encre — matière : encre d'imprimerie légèrement verte */
+  --ink:       #111814;     /* charte — tout le texte (18,03:1 sur blanc, AAA) */
+  --ink-soft:  #5A675F;     /* charte gris vert — secondaire (5,93:1, AA) */
+  --ink-faint: #707472;     /* encre à 60 % sur blanc — méta ≥ 14 px seulement */
+
+  /* Accent — matière : vert forêt du tampon « validé » */
+  --accent:       #005D39;  /* charte — titres, liens, boutons, validation (8,00:1, AAA) */
+  --accent-ink:   #00462B;  /* accent assombri 25 % — hover/actif */
+  --accent-light: #148659;  /* charte — aplats, puces, signes. PAS petit texte */
+
+  /* Structure */
+  --line:      #E2E3E3;     /* encre à 12 % — hairline 1px */
+  --highlight: #D0E7DE;     /* accent-light à 20 % — surlignage phrase clé H1 */
+
+  /* Statuts — toujours signe + mot + couleur, jamais la couleur seule */
+  --status-valide:    #005D39;  /* ✓ validé */
+  --status-renforcer: #9D381F;  /* ↻ à renforcer */
+  --status-revoir:    #316CA5;  /* ◆ prêt à revoir */
+  --status-preparer:  #5A675F;  /* ○ à préparer */
+
+  /* Espacement — échelle charte 4px, rien d'autre (rythme vertical) */
+  --space-4:  4px;
+  --space-8:  8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+
+  /* Motion — courbe unique ease-out long, pas de bounce */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Typo — Public Sans partout ; Fira Mono bornée aux codes/refs (P02, RS6776) */
+  --font-sans: "Public Sans", system-ui, sans-serif;
+  --font-mono: "Fira Mono", ui-monospace, monospace;
+
+  /* Layout — contenu max 1120 px (breakpoint 1024) */
+  --maxw: 1120px;
+}

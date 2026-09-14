@@ -1,0 +1,6 @@
+/* App.css — coquille minimale : hauteur pleine, rien d'invasif.
+   Tokens, reset, matière papier et grain sont dans src/styles/ (base.css). */
+
+#root {
+  min-height: 100%;
+}
